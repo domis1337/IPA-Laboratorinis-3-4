@@ -11,3 +11,9 @@
 1. Galimybė įvesti iš failo.
 2. Studentai surušiuojami.
 3. Sutvarkytas studentų vaizdavimas.
+
+
+# Versija 0.3
+
+1. Atliktas kodo reorganizavimas.
+2. Panaudotas išimčių valdymas.
