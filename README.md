@@ -17,3 +17,9 @@
 
 1. Atliktas kodo reorganizavimas.
 2. Panaudotas išimčių valdymas.
+
+# Versija 0.4
+
+1. Pridėtas failų generavimas.
+2. Pridėtas studentų surūšiavimas į vargšelius ir kietiakus.
+3. Pridėtas programos veikimo laiko tikrinimas.
