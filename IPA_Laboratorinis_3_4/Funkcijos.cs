@@ -11,7 +11,7 @@ namespace IPA_Laboratorinis_3_4
     {
 
         static List<Studentas> studentai = new List<Studentas>();
-       
+        
 
         public void Menu()
         {
@@ -19,7 +19,10 @@ namespace IPA_Laboratorinis_3_4
             Console.WriteLine("1. Ivesti nauja studenta");
             Console.WriteLine("2. Ivesti is failo");
             Console.WriteLine("3. Spausdinti duomenis");
-            Console.WriteLine("4. Baigti darba");
+            Console.WriteLine("4. Isvesti surusiuotus studentus i du atskirus failus");
+            Console.WriteLine("5. Sugeneruoti penkis studentu failus");
+            Console.WriteLine("6. Sugeneruoti penkis studentu failus ir juos surusiuoti i vargsiukus ir kietiakus, bei parodyti laika (Istrins dabartiniu programos issaugotus studentus)");
+            Console.WriteLine("99. Baigti darba");
             Console.WriteLine("\nPasirinkimas:");
             string a = Console.ReadLine();
 
@@ -38,6 +41,18 @@ namespace IPA_Laboratorinis_3_4
                     break;
 
                 case "4":
+                    DuomenuRusiavimasIFailus();
+                    break;
+
+                case "5":
+                    StudentuGeneravimas();
+                    break;
+
+                case "6":
+                    StudentuGeneravimasNuskaitymasRusiavimasLaikas();
+                    break;
+
+                case "99":
                     break;
 
                 default:
@@ -189,7 +204,677 @@ namespace IPA_Laboratorinis_3_4
 
             Menu();
 
-        }       
+        }
+
+
+        void DuomenuRusiavimasIFailus()
+        {
+            string docPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Vargsiukai.txt")))
+            {
+                outputFile.WriteLine("Vardas".PadRight(15, ' ') + "Pavarde".PadRight(20, ' ') + "ND1".PadLeft(7, ' ') + "ND2".PadLeft(7, ' ') + "ND3".PadLeft(7, ' ') + "ND4".PadLeft(7, ' ') + "ND5".PadLeft(7, ' ') + "ND6".PadLeft(7, ' ') + "EGZ".PadLeft(7, ' '));
+                foreach (Studentas stud in studentai)
+                {
+                    if (stud.galutinis_vid < 5)
+                    {
+                        outputFile.WriteLine(stud.vardas.PadRight(15, ' ') + stud.pavarde.PadRight(20, ' ') + (String.Format("{0:0.00}", stud.nd_rez[0])).PadLeft(7, ' ') + (String.Format("{0:0.00}", stud.nd_rez[1])).PadLeft(7, ' ') + (String.Format("{0:0.00}", stud.nd_rez[2])).PadLeft(7, ' ') + (String.Format("{0:0.00}", stud.nd_rez[3])).PadLeft(7, ' ') + (String.Format("{0:0.00}", stud.nd_rez[4])).PadLeft(7, ' ') + (String.Format("{0:0.00}", stud.nd_rez[5])).PadLeft(7, ' ') + (String.Format("{0:0.00}", stud.egz_rez)).PadLeft(7, ' '));
+                    }
+                }
+            }
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Kietiakai.txt")))
+            {
+                outputFile.WriteLine("Vardas".PadRight(15, ' ') + "Pavarde".PadRight(20, ' ') + "ND1".PadLeft(7, ' ') + "ND2".PadLeft(7, ' ') + "ND3".PadLeft(7, ' ') + "ND4".PadLeft(7, ' ') + "ND5".PadLeft(7, ' ') + "ND6".PadLeft(7, ' ') + "EGZ".PadLeft(7, ' '));
+                foreach (Studentas stud in studentai)
+                {
+                    if (stud.galutinis_vid > 5)
+                    {
+                        outputFile.WriteLine(stud.vardas.PadRight(15, ' ') + stud.pavarde.PadRight(20, ' ') + (String.Format("{0:0.00}", stud.nd_rez[0])).PadLeft(7, ' ') + (String.Format("{0:0.00}", stud.nd_rez[1])).PadLeft(7, ' ') + (String.Format("{0:0.00}", stud.nd_rez[2])).PadLeft(7, ' ') + (String.Format("{0:0.00}", stud.nd_rez[3])).PadLeft(7, ' ') + (String.Format("{0:0.00}", stud.nd_rez[4])).PadLeft(7, ' ') + (String.Format("{0:0.00}", stud.nd_rez[5])).PadLeft(7, ' ') + (String.Format("{0:0.00}", stud.egz_rez)).PadLeft(7, ' '));
+                    }
+                }
+            }
+
+            watch.Stop();
+            var elapsedMsRusiavimas = watch.ElapsedMilliseconds;
+            Console.WriteLine($"Time to complete student sorting:  {elapsedMsRusiavimas}");
+            Menu();
+
+        }
+
+
+        void StudentuGeneravimas()
+        {
+            Strukturos.Stud stud;
+            stud.nd_rez = new List<int>();
+            Random rnd = new Random();
+ 
+            string docPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "10.txt")))
+            {
+                for (int i = 1; i<=10;i++)
+                {
+                    stud.nd_rez.Clear();
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.egz_rez = rnd.Next(1, 11);
+
+                    if (i != 10)
+                    {
+                        outputFile.WriteLine($"Vardas{i}".PadRight(15, ' ') + $"Pavarde{i}".PadRight(20, ' ') + $"{stud.nd_rez[0]}".PadLeft(7, ' ') + $"{stud.nd_rez[1]}".PadLeft(7, ' ') + $"{stud.nd_rez[2]}".PadLeft(7, ' ') + $"{stud.nd_rez[3]}".PadLeft(7, ' ') + $"{stud.nd_rez[4]}".PadLeft(7, ' ') + $"{stud.nd_rez[5]}".PadLeft(7, ' ') + $"{stud.egz_rez}".PadLeft(7, ' '));
+                    }
+                    else
+                    {
+                        outputFile.Write($"Vardas{i}".PadRight(15, ' ') + $"Pavarde{i}".PadRight(20, ' ') + $"{stud.nd_rez[0]}".PadLeft(7, ' ') + $"{stud.nd_rez[1]}".PadLeft(7, ' ') + $"{stud.nd_rez[2]}".PadLeft(7, ' ') + $"{stud.nd_rez[3]}".PadLeft(7, ' ') + $"{stud.nd_rez[4]}".PadLeft(7, ' ') + $"{stud.nd_rez[5]}".PadLeft(7, ' ') + $"{stud.egz_rez}".PadLeft(7, ' '));
+                    }
+                }
+            }
+            watch.Stop();
+            var elapsedMs10 = watch.ElapsedMilliseconds;
+            watch.Restart();
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "100.txt")))
+            {
+                for (int i = 1; i <= 100; i++)
+                {
+                    stud.nd_rez.Clear();
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.egz_rez = rnd.Next(1, 11);
+
+
+                    if (i != 100)
+                    {
+                        outputFile.WriteLine($"Vardas{i}".PadRight(15, ' ') + $"Pavarde{i}".PadRight(20, ' ') + $"{stud.nd_rez[0]}".PadLeft(7, ' ') + $"{stud.nd_rez[1]}".PadLeft(7, ' ') + $"{stud.nd_rez[2]}".PadLeft(7, ' ') + $"{stud.nd_rez[3]}".PadLeft(7, ' ') + $"{stud.nd_rez[4]}".PadLeft(7, ' ') + $"{stud.nd_rez[5]}".PadLeft(7, ' ') + $"{stud.egz_rez}".PadLeft(7, ' '));
+                    }
+                    else
+                    {
+                        outputFile.Write($"Vardas{i}".PadRight(15, ' ') + $"Pavarde{i}".PadRight(20, ' ') + $"{stud.nd_rez[0]}".PadLeft(7, ' ') + $"{stud.nd_rez[1]}".PadLeft(7, ' ') + $"{stud.nd_rez[2]}".PadLeft(7, ' ') + $"{stud.nd_rez[3]}".PadLeft(7, ' ') + $"{stud.nd_rez[4]}".PadLeft(7, ' ') + $"{stud.nd_rez[5]}".PadLeft(7, ' ') + $"{stud.egz_rez}".PadLeft(7, ' '));
+                    }
+                }
+            }
+            watch.Stop();
+            var elapsedMs100 = watch.ElapsedMilliseconds;
+            watch.Restart();
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "1000.txt")))
+            {
+                for (int i = 1; i <= 1000; i++)
+                {
+                    stud.nd_rez.Clear();
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.egz_rez = rnd.Next(1, 11);
+
+
+                    if (i != 1000)
+                    {
+                        outputFile.WriteLine($"Vardas{i}".PadRight(15, ' ') + $"Pavarde{i}".PadRight(20, ' ') + $"{stud.nd_rez[0]}".PadLeft(7, ' ') + $"{stud.nd_rez[1]}".PadLeft(7, ' ') + $"{stud.nd_rez[2]}".PadLeft(7, ' ') + $"{stud.nd_rez[3]}".PadLeft(7, ' ') + $"{stud.nd_rez[4]}".PadLeft(7, ' ') + $"{stud.nd_rez[5]}".PadLeft(7, ' ') + $"{stud.egz_rez}".PadLeft(7, ' '));
+                    }
+                    else
+                    {
+                        outputFile.Write($"Vardas{i}".PadRight(15, ' ') + $"Pavarde{i}".PadRight(20, ' ') + $"{stud.nd_rez[0]}".PadLeft(7, ' ') + $"{stud.nd_rez[1]}".PadLeft(7, ' ') + $"{stud.nd_rez[2]}".PadLeft(7, ' ') + $"{stud.nd_rez[3]}".PadLeft(7, ' ') + $"{stud.nd_rez[4]}".PadLeft(7, ' ') + $"{stud.nd_rez[5]}".PadLeft(7, ' ') + $"{stud.egz_rez}".PadLeft(7, ' '));
+                    }
+                }
+            }
+            watch.Stop();
+            var elapsedMs1000 = watch.ElapsedMilliseconds;
+            watch.Restart();
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "10000.txt")))
+            {
+                for (int i = 1; i <= 10000; i++)
+                {
+                    stud.nd_rez.Clear();
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.egz_rez = rnd.Next(1, 11);
+
+
+                    if (i != 10000)
+                    {
+                        outputFile.WriteLine($"Vardas{i}".PadRight(15, ' ') + $"Pavarde{i}".PadRight(20, ' ') + $"{stud.nd_rez[0]}".PadLeft(7, ' ') + $"{stud.nd_rez[1]}".PadLeft(7, ' ') + $"{stud.nd_rez[2]}".PadLeft(7, ' ') + $"{stud.nd_rez[3]}".PadLeft(7, ' ') + $"{stud.nd_rez[4]}".PadLeft(7, ' ') + $"{stud.nd_rez[5]}".PadLeft(7, ' ') + $"{stud.egz_rez}".PadLeft(7, ' '));
+                    }
+                    else
+                    {
+                        outputFile.Write($"Vardas{i}".PadRight(15, ' ') + $"Pavarde{i}".PadRight(20, ' ') + $"{stud.nd_rez[0]}".PadLeft(7, ' ') + $"{stud.nd_rez[1]}".PadLeft(7, ' ') + $"{stud.nd_rez[2]}".PadLeft(7, ' ') + $"{stud.nd_rez[3]}".PadLeft(7, ' ') + $"{stud.nd_rez[4]}".PadLeft(7, ' ') + $"{stud.nd_rez[5]}".PadLeft(7, ' ') + $"{stud.egz_rez}".PadLeft(7, ' '));
+                    }
+                }
+            }
+            watch.Stop();
+            var elapsedMs10000 = watch.ElapsedMilliseconds;
+            watch.Restart();
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "100000.txt")))
+            {
+                for (int i = 1; i <= 100000; i++)
+                {
+                    stud.nd_rez.Clear();
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.egz_rez = rnd.Next(1, 11);
+
+
+                    if (i != 100000)
+                    {
+                        outputFile.WriteLine($"Vardas{i}".PadRight(15, ' ') + $"Pavarde{i}".PadRight(20, ' ') + $"{stud.nd_rez[0]}".PadLeft(7, ' ') + $"{stud.nd_rez[1]}".PadLeft(7, ' ') + $"{stud.nd_rez[2]}".PadLeft(7, ' ') + $"{stud.nd_rez[3]}".PadLeft(7, ' ') + $"{stud.nd_rez[4]}".PadLeft(7, ' ') + $"{stud.nd_rez[5]}".PadLeft(7, ' ') + $"{stud.egz_rez}".PadLeft(7, ' '));
+                    }
+                    else
+                    {
+                        outputFile.Write($"Vardas{i}".PadRight(15, ' ') + $"Pavarde{i}".PadRight(20, ' ') + $"{stud.nd_rez[0]}".PadLeft(7, ' ') + $"{stud.nd_rez[1]}".PadLeft(7, ' ') + $"{stud.nd_rez[2]}".PadLeft(7, ' ') + $"{stud.nd_rez[3]}".PadLeft(7, ' ') + $"{stud.nd_rez[4]}".PadLeft(7, ' ') + $"{stud.nd_rez[5]}".PadLeft(7, ' ') + $"{stud.egz_rez}".PadLeft(7, ' '));
+                    }
+                }
+            }
+            watch.Stop();
+            var elapsedMs100000 = watch.ElapsedMilliseconds;
+            watch.Restart();
+
+            Console.WriteLine($"Time to complete 10:  {elapsedMs10}");
+            Console.WriteLine($"Time to complete 100:  {elapsedMs100}");
+            Console.WriteLine($"Time to complete 1000:  {elapsedMs1000}");
+            Console.WriteLine($"Time to complete 10000:  {elapsedMs10000}");
+            Console.WriteLine($"Time to complete 100000:  {elapsedMs100000}");
+
+
+            Menu();
+
+
+        }
+
+
+        void StudentuGeneravimasNuskaitymasRusiavimasLaikas()
+        {
+            Strukturos.Stud stud;
+            stud.nd_rez = new List<int>();
+            Random rnd = new Random();
+
+            string docPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            studentai.Clear();
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "10.txt")))
+            {
+                for (int i = 1; i <= 10; i++)
+                {
+                    stud.nd_rez.Clear();
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.egz_rez = rnd.Next(1, 11);
+
+
+                    if (i != 10)
+                    {
+                        outputFile.WriteLine($"Vardas{i}".PadRight(15, ' ') + $"Pavarde{i}".PadRight(20, ' ') + $"{stud.nd_rez[0]}".PadLeft(7, ' ') + $"{stud.nd_rez[1]}".PadLeft(7, ' ') + $"{stud.nd_rez[2]}".PadLeft(7, ' ') + $"{stud.nd_rez[3]}".PadLeft(7, ' ') + $"{stud.nd_rez[4]}".PadLeft(7, ' ') + $"{stud.nd_rez[5]}".PadLeft(7, ' ') + $"{stud.egz_rez}".PadLeft(7, ' '));
+                    }
+                    else
+                    {
+                        outputFile.Write($"Vardas{i}".PadRight(15, ' ') + $"Pavarde{i}".PadRight(20, ' ') + $"{stud.nd_rez[0]}".PadLeft(7, ' ') + $"{stud.nd_rez[1]}".PadLeft(7, ' ') + $"{stud.nd_rez[2]}".PadLeft(7, ' ') + $"{stud.nd_rez[3]}".PadLeft(7, ' ') + $"{stud.nd_rez[4]}".PadLeft(7, ' ') + $"{stud.nd_rez[5]}".PadLeft(7, ' ') + $"{stud.egz_rez}".PadLeft(7, ' '));
+                    }
+                }
+            }
+            using (System.IO.StreamReader file = new System.IO.StreamReader(Path.Combine(docPath, "10.txt")))
+            {
+                int count = -1;
+                string line;
+                while ((line = file.ReadLine()) != null)
+                {
+                    if (count == -1)
+                    {
+                        count++;
+                    }
+                    else
+                    {
+                        string[] ssplit = line.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
+
+                        Strukturos.Stud studas;
+                        studas.nd_rez = new List<int>();
+
+                        studas.vardas = ssplit[0];
+                        studas.pavarde = ssplit[1];
+                        int.TryParse(ssplit[2], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[3], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[4], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[5], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[6], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[7], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[8], out studas.egz_rez);
+
+                        studentai.Add(new Studentas(studas.vardas, studas.pavarde, studas.nd_rez, studas.egz_rez));
+
+                        count++;
+                    }
+                }
+                file.Close();
+            }
+            
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Vargsiukai10.txt")))
+            {
+                outputFile.WriteLine("Vardas".PadRight(15, ' ') + "Pavarde".PadRight(20, ' ') + "ND1".PadLeft(7, ' ') + "ND2".PadLeft(7, ' ') + "ND3".PadLeft(7, ' ') + "ND4".PadLeft(7, ' ') + "ND5".PadLeft(7, ' ') + "ND6".PadLeft(7, ' ') + "EGZ".PadLeft(7, ' '));
+                foreach (Studentas studi in studentai)
+                {
+
+                    if (studi.galutinis_vid < 5)
+                    {
+                        outputFile.WriteLine(studi.vardas.PadRight(15, ' ') + studi.pavarde.PadRight(20, ' ') + (String.Format("{0:0.00}", studi.nd_rez[0])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[1])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[2])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[3])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[4])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[5])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.egz_rez)).PadLeft(7, ' '));
+                    }
+                }
+            }
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Kietiakai10.txt")))
+            {
+                outputFile.WriteLine("Vardas".PadRight(15, ' ') + "Pavarde".PadRight(20, ' ') + "ND1".PadLeft(7, ' ') + "ND2".PadLeft(7, ' ') + "ND3".PadLeft(7, ' ') + "ND4".PadLeft(7, ' ') + "ND5".PadLeft(7, ' ') + "ND6".PadLeft(7, ' ') + "EGZ".PadLeft(7, ' '));
+                foreach (Studentas studi in studentai)
+                {
+                    if (studi.galutinis_vid > 5)
+                    {
+                        outputFile.WriteLine(studi.vardas.PadRight(15, ' ') + studi.pavarde.PadRight(20, ' ') + (String.Format("{0:0.00}", studi.nd_rez[0])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[1])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[2])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[3])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[4])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[5])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.egz_rez)).PadLeft(7, ' '));
+                    }
+                }
+            }
+            watch.Stop();
+            var elapsedMs10 = watch.ElapsedMilliseconds;
+            studentai.Clear();
+            watch.Restart();
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "100.txt")))
+            {
+                for (int i = 1; i <= 100; i++)
+                {
+                    stud.nd_rez.Clear();
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.egz_rez = rnd.Next(1, 11);
+
+
+                    if (i != 100)
+                    {
+                        outputFile.WriteLine($"Vardas{i}".PadRight(15, ' ') + $"Pavarde{i}".PadRight(20, ' ') + $"{stud.nd_rez[0]}".PadLeft(7, ' ') + $"{stud.nd_rez[1]}".PadLeft(7, ' ') + $"{stud.nd_rez[2]}".PadLeft(7, ' ') + $"{stud.nd_rez[3]}".PadLeft(7, ' ') + $"{stud.nd_rez[4]}".PadLeft(7, ' ') + $"{stud.nd_rez[5]}".PadLeft(7, ' ') + $"{stud.egz_rez}".PadLeft(7, ' '));
+                    }
+                    else
+                    {
+                        outputFile.Write($"Vardas{i}".PadRight(15, ' ') + $"Pavarde{i}".PadRight(20, ' ') + $"{stud.nd_rez[0]}".PadLeft(7, ' ') + $"{stud.nd_rez[1]}".PadLeft(7, ' ') + $"{stud.nd_rez[2]}".PadLeft(7, ' ') + $"{stud.nd_rez[3]}".PadLeft(7, ' ') + $"{stud.nd_rez[4]}".PadLeft(7, ' ') + $"{stud.nd_rez[5]}".PadLeft(7, ' ') + $"{stud.egz_rez}".PadLeft(7, ' '));
+                    }
+                }
+            }
+            using (System.IO.StreamReader file = new System.IO.StreamReader(Path.Combine(docPath, "100.txt")))
+            {
+                int count = -1;
+                string line;
+                while ((line = file.ReadLine()) != null)
+                {
+                    if (count == -1)
+                    {
+                        count++;
+                    }
+                    else
+                    {
+                        string[] ssplit = line.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
+
+                        Strukturos.Stud studas;
+                        studas.nd_rez = new List<int>();
+
+                        studas.vardas = ssplit[0];
+                        studas.pavarde = ssplit[1];
+                        int.TryParse(ssplit[2], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[3], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[4], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[5], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[6], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[7], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[8], out studas.egz_rez);
+
+                        studentai.Add(new Studentas(studas.vardas, studas.pavarde, studas.nd_rez, studas.egz_rez));
+
+                        count++;
+                    }
+                }
+                file.Close();
+            }
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Vargsiukai100.txt")))
+            {
+                outputFile.WriteLine("Vardas".PadRight(15, ' ') + "Pavarde".PadRight(20, ' ') + "ND1".PadLeft(7, ' ') + "ND2".PadLeft(7, ' ') + "ND3".PadLeft(7, ' ') + "ND4".PadLeft(7, ' ') + "ND5".PadLeft(7, ' ') + "ND6".PadLeft(7, ' ') + "EGZ".PadLeft(7, ' '));
+                foreach (Studentas studi in studentai)
+                {
+                    if (studi.galutinis_vid < 5)
+                    {
+                        outputFile.WriteLine(studi.vardas.PadRight(15, ' ') + studi.pavarde.PadRight(20, ' ') + (String.Format("{0:0.00}", studi.nd_rez[0])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[1])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[2])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[3])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[4])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[5])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.egz_rez)).PadLeft(7, ' '));
+                    }
+                }
+            }
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Kietiakai100.txt")))
+            {
+                outputFile.WriteLine("Vardas".PadRight(15, ' ') + "Pavarde".PadRight(20, ' ') + "ND1".PadLeft(7, ' ') + "ND2".PadLeft(7, ' ') + "ND3".PadLeft(7, ' ') + "ND4".PadLeft(7, ' ') + "ND5".PadLeft(7, ' ') + "ND6".PadLeft(7, ' ') + "EGZ".PadLeft(7, ' '));
+                foreach (Studentas studi in studentai)
+                {
+                    if (studi.galutinis_vid > 5)
+                    {
+                        outputFile.WriteLine(studi.vardas.PadRight(15, ' ') + studi.pavarde.PadRight(20, ' ') + (String.Format("{0:0.00}", studi.nd_rez[0])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[1])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[2])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[3])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[4])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[5])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.egz_rez)).PadLeft(7, ' '));
+                    }
+                }
+            }
+            watch.Stop();
+            var elapsedMs100 = watch.ElapsedMilliseconds;
+            studentai.Clear();
+            watch.Restart();
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "1000.txt")))
+            {
+                for (int i = 1; i <= 1000; i++)
+                {
+                    stud.nd_rez.Clear();
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.egz_rez = rnd.Next(1, 11);
+
+
+                    if (i != 1000)
+                    {
+                        outputFile.WriteLine($"Vardas{i}".PadRight(15, ' ') + $"Pavarde{i}".PadRight(20, ' ') + $"{stud.nd_rez[0]}".PadLeft(7, ' ') + $"{stud.nd_rez[1]}".PadLeft(7, ' ') + $"{stud.nd_rez[2]}".PadLeft(7, ' ') + $"{stud.nd_rez[3]}".PadLeft(7, ' ') + $"{stud.nd_rez[4]}".PadLeft(7, ' ') + $"{stud.nd_rez[5]}".PadLeft(7, ' ') + $"{stud.egz_rez}".PadLeft(7, ' '));
+                    }
+                    else
+                    {
+                        outputFile.Write($"Vardas{i}".PadRight(15, ' ') + $"Pavarde{i}".PadRight(20, ' ') + $"{stud.nd_rez[0]}".PadLeft(7, ' ') + $"{stud.nd_rez[1]}".PadLeft(7, ' ') + $"{stud.nd_rez[2]}".PadLeft(7, ' ') + $"{stud.nd_rez[3]}".PadLeft(7, ' ') + $"{stud.nd_rez[4]}".PadLeft(7, ' ') + $"{stud.nd_rez[5]}".PadLeft(7, ' ') + $"{stud.egz_rez}".PadLeft(7, ' '));
+                    }
+                }
+            }
+            using (System.IO.StreamReader file = new System.IO.StreamReader(Path.Combine(docPath, "1000.txt")))
+            {
+                int count = -1;
+                string line;
+                while ((line = file.ReadLine()) != null)
+                {
+                    if (count == -1)
+                    {
+                        count++;
+                    }
+                    else
+                    {
+                        string[] ssplit = line.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
+
+                        Strukturos.Stud studas;
+                        studas.nd_rez = new List<int>();
+
+                        studas.vardas = ssplit[0];
+                        studas.pavarde = ssplit[1];
+                        int.TryParse(ssplit[2], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[3], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[4], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[5], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[6], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[7], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[8], out studas.egz_rez);
+
+                        studentai.Add(new Studentas(studas.vardas, studas.pavarde, studas.nd_rez, studas.egz_rez));
+
+                        count++;
+                    }
+                }
+                file.Close();
+            }
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Vargsiukai1000.txt")))
+            {
+                outputFile.WriteLine("Vardas".PadRight(15, ' ') + "Pavarde".PadRight(20, ' ') + "ND1".PadLeft(7, ' ') + "ND2".PadLeft(7, ' ') + "ND3".PadLeft(7, ' ') + "ND4".PadLeft(7, ' ') + "ND5".PadLeft(7, ' ') + "ND6".PadLeft(7, ' ') + "EGZ".PadLeft(7, ' '));
+                foreach (Studentas studi in studentai)
+                {
+                    if (studi.galutinis_vid < 5)
+                    {
+                        outputFile.WriteLine(studi.vardas.PadRight(15, ' ') + studi.pavarde.PadRight(20, ' ') + (String.Format("{0:0.00}", studi.nd_rez[0])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[1])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[2])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[3])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[4])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[5])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.egz_rez)).PadLeft(7, ' '));
+                    }
+                }
+            }
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Kietiakai1000.txt")))
+            {
+                outputFile.WriteLine("Vardas".PadRight(15, ' ') + "Pavarde".PadRight(20, ' ') + "ND1".PadLeft(7, ' ') + "ND2".PadLeft(7, ' ') + "ND3".PadLeft(7, ' ') + "ND4".PadLeft(7, ' ') + "ND5".PadLeft(7, ' ') + "ND6".PadLeft(7, ' ') + "EGZ".PadLeft(7, ' '));
+                foreach (Studentas studi in studentai)
+                {
+                    if (studi.galutinis_vid > 5)
+                    {
+                        outputFile.WriteLine(studi.vardas.PadRight(15, ' ') + studi.pavarde.PadRight(20, ' ') + (String.Format("{0:0.00}", studi.nd_rez[0])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[1])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[2])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[3])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[4])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[5])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.egz_rez)).PadLeft(7, ' '));
+                    }
+                }
+            }
+            watch.Stop();
+            var elapsedMs1000 = watch.ElapsedMilliseconds;
+            studentai.Clear();
+            watch.Restart();
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "10000.txt")))
+            {
+                for (int i = 1; i <= 10000; i++)
+                {
+                    stud.nd_rez.Clear();
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.egz_rez = rnd.Next(1, 11);
+
+
+                    if (i != 10000)
+                    {
+                        outputFile.WriteLine($"Vardas{i}".PadRight(15, ' ') + $"Pavarde{i}".PadRight(20, ' ') + $"{stud.nd_rez[0]}".PadLeft(7, ' ') + $"{stud.nd_rez[1]}".PadLeft(7, ' ') + $"{stud.nd_rez[2]}".PadLeft(7, ' ') + $"{stud.nd_rez[3]}".PadLeft(7, ' ') + $"{stud.nd_rez[4]}".PadLeft(7, ' ') + $"{stud.nd_rez[5]}".PadLeft(7, ' ') + $"{stud.egz_rez}".PadLeft(7, ' '));
+                    }
+                    else
+                    {
+                        outputFile.Write($"Vardas{i}".PadRight(15, ' ') + $"Pavarde{i}".PadRight(20, ' ') + $"{stud.nd_rez[0]}".PadLeft(7, ' ') + $"{stud.nd_rez[1]}".PadLeft(7, ' ') + $"{stud.nd_rez[2]}".PadLeft(7, ' ') + $"{stud.nd_rez[3]}".PadLeft(7, ' ') + $"{stud.nd_rez[4]}".PadLeft(7, ' ') + $"{stud.nd_rez[5]}".PadLeft(7, ' ') + $"{stud.egz_rez}".PadLeft(7, ' '));
+                    }
+                }
+            }
+            using (System.IO.StreamReader file = new System.IO.StreamReader(Path.Combine(docPath, "10000.txt")))
+            {
+                int count = -1;
+                string line;
+                while ((line = file.ReadLine()) != null)
+                {
+                    if (count == -1)
+                    {
+                        count++;
+                    }
+                    else
+                    {
+                        string[] ssplit = line.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
+
+                        Strukturos.Stud studas;
+                        studas.nd_rez = new List<int>();
+
+                        studas.vardas = ssplit[0];
+                        studas.pavarde = ssplit[1];
+                        int.TryParse(ssplit[2], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[3], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[4], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[5], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[6], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[7], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[8], out studas.egz_rez);
+
+                        studentai.Add(new Studentas(studas.vardas, studas.pavarde, studas.nd_rez, studas.egz_rez));
+
+                        count++;
+                    }
+                }
+                file.Close();
+            }
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Vargsiukai10000.txt")))
+            {
+                outputFile.WriteLine("Vardas".PadRight(15, ' ') + "Pavarde".PadRight(20, ' ') + "ND1".PadLeft(7, ' ') + "ND2".PadLeft(7, ' ') + "ND3".PadLeft(7, ' ') + "ND4".PadLeft(7, ' ') + "ND5".PadLeft(7, ' ') + "ND6".PadLeft(7, ' ') + "EGZ".PadLeft(7, ' '));
+                foreach (Studentas studi in studentai)
+                {
+                    if (studi.galutinis_vid < 5)
+                    {
+                        outputFile.WriteLine(studi.vardas.PadRight(15, ' ') + studi.pavarde.PadRight(20, ' ') + (String.Format("{0:0.00}", studi.nd_rez[0])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[1])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[2])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[3])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[4])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[5])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.egz_rez)).PadLeft(7, ' '));
+                    }
+                }
+            }
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Kietiakai10000.txt")))
+            {
+                outputFile.WriteLine("Vardas".PadRight(15, ' ') + "Pavarde".PadRight(20, ' ') + "ND1".PadLeft(7, ' ') + "ND2".PadLeft(7, ' ') + "ND3".PadLeft(7, ' ') + "ND4".PadLeft(7, ' ') + "ND5".PadLeft(7, ' ') + "ND6".PadLeft(7, ' ') + "EGZ".PadLeft(7, ' '));
+                foreach (Studentas studi in studentai)
+                {
+                    if (studi.galutinis_vid > 5)
+                    {
+                        outputFile.WriteLine(studi.vardas.PadRight(15, ' ') + studi.pavarde.PadRight(20, ' ') + (String.Format("{0:0.00}", studi.nd_rez[0])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[1])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[2])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[3])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[4])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[5])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.egz_rez)).PadLeft(7, ' '));
+                    }
+                }
+            }
+            watch.Stop();
+            var elapsedMs10000 = watch.ElapsedMilliseconds;
+            studentai.Clear();
+            watch.Restart();
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "100000.txt")))
+            {
+                for (int i = 1; i <= 100000; i++)
+                {
+                    stud.nd_rez.Clear();
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.nd_rez.Add(rnd.Next(1, 11));
+                    stud.egz_rez = rnd.Next(1, 11);
+
+
+                    if (i != 100000)
+                    {
+                        outputFile.WriteLine($"Vardas{i}".PadRight(15, ' ') + $"Pavarde{i}".PadRight(20, ' ') + $"{stud.nd_rez[0]}".PadLeft(7, ' ') + $"{stud.nd_rez[1]}".PadLeft(7, ' ') + $"{stud.nd_rez[2]}".PadLeft(7, ' ') + $"{stud.nd_rez[3]}".PadLeft(7, ' ') + $"{stud.nd_rez[4]}".PadLeft(7, ' ') + $"{stud.nd_rez[5]}".PadLeft(7, ' ') + $"{stud.egz_rez}".PadLeft(7, ' '));
+                    }
+                    else
+                    {
+                        outputFile.Write($"Vardas{i}".PadRight(15, ' ') + $"Pavarde{i}".PadRight(20, ' ') + $"{stud.nd_rez[0]}".PadLeft(7, ' ') + $"{stud.nd_rez[1]}".PadLeft(7, ' ') + $"{stud.nd_rez[2]}".PadLeft(7, ' ') + $"{stud.nd_rez[3]}".PadLeft(7, ' ') + $"{stud.nd_rez[4]}".PadLeft(7, ' ') + $"{stud.nd_rez[5]}".PadLeft(7, ' ') + $"{stud.egz_rez}".PadLeft(7, ' '));
+                    }
+                }
+            }
+            using (System.IO.StreamReader file = new System.IO.StreamReader(Path.Combine(docPath, "100000.txt")))
+            {
+                int count = -1;
+                string line;
+                while ((line = file.ReadLine()) != null)
+                {
+                    if (count == -1)
+                    {
+                        count++;
+                    }
+                    else
+                    {
+                        string[] ssplit = line.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
+
+                        Strukturos.Stud studas;
+                        studas.nd_rez = new List<int>();
+
+                        studas.vardas = ssplit[0];
+                        studas.pavarde = ssplit[1];
+                        int.TryParse(ssplit[2], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[3], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[4], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[5], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[6], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[7], out studas.egz_rez);
+                        studas.nd_rez.Add(studas.egz_rez);
+                        int.TryParse(ssplit[8], out studas.egz_rez);
+
+                        studentai.Add(new Studentas(studas.vardas, studas.pavarde, studas.nd_rez, studas.egz_rez));
+
+                        count++;
+                    }
+                }
+                file.Close();
+            }
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Vargsiukai100000.txt")))
+            {
+                outputFile.WriteLine("Vardas".PadRight(15, ' ') + "Pavarde".PadRight(20, ' ') + "ND1".PadLeft(7, ' ') + "ND2".PadLeft(7, ' ') + "ND3".PadLeft(7, ' ') + "ND4".PadLeft(7, ' ') + "ND5".PadLeft(7, ' ') + "ND6".PadLeft(7, ' ') + "EGZ".PadLeft(7, ' '));
+                foreach (Studentas studi in studentai)
+                {
+                    if (studi.galutinis_vid < 5)
+                    {
+                        outputFile.WriteLine(studi.vardas.PadRight(15, ' ') + studi.pavarde.PadRight(20, ' ') + (String.Format("{0:0.00}", studi.nd_rez[0])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[1])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[2])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[3])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[4])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[5])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.egz_rez)).PadLeft(7, ' '));
+                    }
+                }
+            }
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Kietiakai100000.txt")))
+            {
+                outputFile.WriteLine("Vardas".PadRight(15, ' ') + "Pavarde".PadRight(20, ' ') + "ND1".PadLeft(7, ' ') + "ND2".PadLeft(7, ' ') + "ND3".PadLeft(7, ' ') + "ND4".PadLeft(7, ' ') + "ND5".PadLeft(7, ' ') + "ND6".PadLeft(7, ' ') + "EGZ".PadLeft(7, ' '));
+                foreach (Studentas studi in studentai)
+                {
+                    if (studi.galutinis_vid > 5)
+                    {
+                        outputFile.WriteLine(studi.vardas.PadRight(15, ' ') + studi.pavarde.PadRight(20, ' ') + (String.Format("{0:0.00}", studi.nd_rez[0])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[1])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[2])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[3])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[4])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.nd_rez[5])).PadLeft(7, ' ') + (String.Format("{0:0.00}", studi.egz_rez)).PadLeft(7, ' '));
+                    }
+                }
+            }
+            watch.Stop();
+            var elapsedMs100000 = watch.ElapsedMilliseconds;
+            watch.Restart();
+
+            Console.WriteLine($"Time to complete 10:  {elapsedMs10}");
+            Console.WriteLine($"Time to complete 100:  {elapsedMs100}");
+            Console.WriteLine($"Time to complete 1000:  {elapsedMs1000}");
+            Console.WriteLine($"Time to complete 10000:  {elapsedMs10000}");
+            Console.WriteLine($"Time to complete 100000:  {elapsedMs100000}");
+            Console.WriteLine($"Time to complete everything:  {elapsedMs100000+elapsedMs10000+elapsedMs1000+elapsedMs100+elapsedMs10}");
+
+            Console.WriteLine($"\n\n");
+
+            Menu();
+
+
+        }
     }
 
 
