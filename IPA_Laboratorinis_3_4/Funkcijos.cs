@@ -20,8 +20,9 @@ namespace IPA_Laboratorinis_3_4
             Console.WriteLine("2. Ivesti is failo");
             Console.WriteLine("3. Spausdinti duomenis");
             Console.WriteLine("4. Isvesti surusiuotus studentus i du atskirus failus");
-            //Console.WriteLine("5. Sugeneruoti penkis studentu failus");
-            //Console.WriteLine("6. Sugeneruoti penkis studentu failus ir juos surusiuoti i vargsiukus ir kietiakus, bei parodyti laika (Istrins dabartiniu programos issaugotus studentus)");
+            Console.WriteLine("5. Sugeneruoti penkis studentu failus");
+            Console.WriteLine("6. Greicio patikra(List<T>, LinkedList<T>, Queue<T>");
+            //Console.WriteLine("7. Sugeneruoti penkis studentu failus ir juos surusiuoti i vargsiukus ir kietiakus, bei parodyti laika (Istrins dabartiniu programos issaugotus studentus)");
             Console.WriteLine("99. Baigti darba");
             Console.WriteLine("\nPasirinkimas:");
             string a = Console.ReadLine();
@@ -44,11 +45,16 @@ namespace IPA_Laboratorinis_3_4
                     DuomenuRusiavimasIFailus();
                     break;
 
-                /*case "5":
+                case "5":
                     StudentuGeneravimas();
-                    break;*/
+                    break;
 
-                /*case "6":
+                case "6":
+                    var instance = new Patikra();
+                    instance.Start();
+                    break;
+
+                /*case "7":
                     StudentuGeneravimasNuskaitymasRusiavimasLaikas();
                     break;*/
 
@@ -434,7 +440,7 @@ namespace IPA_Laboratorinis_3_4
             }
             using (System.IO.StreamReader file = new System.IO.StreamReader(Path.Combine(docPath, "10.txt")))
             {
-                int count = -1;
+                int count = 0;
                 string line;
                 while ((line = file.ReadLine()) != null)
                 {
@@ -524,7 +530,7 @@ namespace IPA_Laboratorinis_3_4
             }
             using (System.IO.StreamReader file = new System.IO.StreamReader(Path.Combine(docPath, "100.txt")))
             {
-                int count = -1;
+                int count = 0;
                 string line;
                 while ((line = file.ReadLine()) != null)
                 {
@@ -616,7 +622,7 @@ namespace IPA_Laboratorinis_3_4
                 string line;
                 while ((line = file.ReadLine()) != null)
                 {
-                    if (count == -1)
+                    if (count == 0)
                     {
                         count++;
                     }
@@ -704,7 +710,7 @@ namespace IPA_Laboratorinis_3_4
                 string line;
                 while ((line = file.ReadLine()) != null)
                 {
-                    if (count == -1)
+                    if (count == 0)
                     {
                         count++;
                     }
@@ -792,7 +798,7 @@ namespace IPA_Laboratorinis_3_4
                 string line;
                 while ((line = file.ReadLine()) != null)
                 {
-                    if (count == -1)
+                    if (count == 0)
                     {
                         count++;
                     }
@@ -848,7 +854,7 @@ namespace IPA_Laboratorinis_3_4
             }
             watch.Stop();
             var elapsedMs100000 = watch.ElapsedMilliseconds;
-            watch.Restart();
+
 
             Console.WriteLine($"Time to complete 10:  {elapsedMs10}");
             Console.WriteLine($"Time to complete 100:  {elapsedMs100}");
