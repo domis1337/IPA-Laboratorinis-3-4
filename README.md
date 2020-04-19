@@ -52,4 +52,14 @@ Rezultatuose matyti, kad Queue<T> konteinerio greitis yra didžiausias.
   
 # Versija 1.0
 
+Programos veikimo greitis skirtingomis strategijomis, bei List<T> greitis su pakeistais algoritmais.
+
+**Time measured in Ms**
+|          File          |        List(strat1)         |  LinkedList(strat1)   |     Queue(strat1)      |        List(strat2)         |  LinkedList(strat2)   |     List(algoritm)      |
+|-|-|-|-|-|-|-|
+|        '10.txt'        |         6         |         4          |         5             |         5         |         5          |         4              |
+|       '100.txt'        |         7         |         7          |         8             |         6         |         7          |         5              |
+|       '1000.txt'       |         26        |         28         |         27            |         24        |         30         |         11             |
+|      '10000.txt'       |         101       |        113         |         101           |         98        |         1027       |         51             |
+|      '100000.txt'      |         705       |        707         |         604           |         1401      |         126563     |         474            |
 
