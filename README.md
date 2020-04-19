@@ -38,7 +38,7 @@ Visos programos greitis 00:00:02:021
 
 **Time measured in Ms**
 |          File          |        List         |  LinkedList   |     Queue      |
-|-|-|-|-|-|-|
+|-|-|-|-|
 |        '10.txt'        |         4         |         10         |         8              |
 |       '100.txt'        |         7         |         8          |         9              |
 |       '1000.txt'       |         23        |         27         |         22             |
