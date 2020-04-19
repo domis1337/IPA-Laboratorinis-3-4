@@ -24,7 +24,7 @@
 2. Pridėtas studentų surūšiavimas į vargšelius ir kietiakus.
 3. Pridėtas programos veikimo laiko tikrinimas.
 
-Programos greitis(studentai, vargsiukai/kietiakai, greitis):
+*Programos greitis(studentai, vargsiukai/kietiakai, greitis):*
 ```
 10 studentų, 2v/8k, 00:00:00:009
 100 studentų, 42v/58k, 00:00:00:011
