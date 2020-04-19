@@ -25,9 +25,11 @@
 3. Pridėtas programos veikimo laiko tikrinimas.
 
 Programos greitis(studentai, vargsiukai/kietiakai, greitis):
--10 studentų, 2v/8k, 00:00:00:009
--100 studentų, 42v/58k, 00:00:00:011
--1000 studentų, 440v/560k, 00:00:00:046
--10000 studentų, 4275v/5725k, 00:00:00:203
--100000 studentų, 43240v/56760k, 00:00:01:752
--Visos programos greitis 00:00:02:021
+'''
+10 studentų, 2v/8k, 00:00:00:009
+100 studentų, 42v/58k, 00:00:00:011
+1000 studentų, 440v/560k, 00:00:00:046
+10000 studentų, 4275v/5725k, 00:00:00:203
+100000 studentų, 43240v/56760k, 00:00:01:752
+Visos programos greitis 00:00:02:021
+'''
