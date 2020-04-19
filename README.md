@@ -37,11 +37,11 @@ Visos programos greitis 00:00:02:021
 # Versija 0.5
 
 **Time measured in Ms**
-|          File          |        List         |  LinkedList   |     Queue.Enqueue      |    Queue.ElementAt     |      Queue.Append      |
+|          File          |        List         |  LinkedList   |     Queue      |
 |-|-|-|-|-|-|
-|        '10.txt'        |         4         |         10         |         0:00.0         |         0:00.0         |         0:00.0         |
-|       '100.txt'        |         7         |         8          |         0:00.0         |         0:00.0         |         0:00.0         |
-|       '1000.txt'       |         23        |         27         |         0:00.0         |         0:00.7         |         0:00.0         |
-|      '10000.txt'       |         88        |         92         |         0:00.1         |        0:00.622        |         0:00.1         |
-|      '100000.txt'      |        590        |        564         |        0:00.19         |        0:49.714        |        0:00.23         |
+|        '10.txt'        |         4         |         10         |         8              |
+|       '100.txt'        |         7         |         8          |         9              |
+|       '1000.txt'       |         23        |         27         |         22             |
+|      '10000.txt'       |         88        |         92         |         87             |
+|      '100000.txt'      |        590        |        564         |        567             |
 
