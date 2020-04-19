@@ -38,7 +38,7 @@ Visos programos greitis 00:00:02:021
 
 **Time measured in Ms**
 |          File          |        List         |  LinkedList.AddFirst   |  LinkedList.ElementAt  |   LinkedList.AddLast   |     Queue.Enqueue      |    Queue.ElementAt     |      Queue.Append      |
-|-|-|-|-|-|-|-|-|-|-|
+|-|-|-|-|-|-|-|-|
 |        '10.txt'        |         4         |         0:00.0         |         0:00.0         |         0:00.0         |         0:00.0         |         0:00.0         |         0:00.0         |
 |       '100.txt'        |         0:00.0         |         0:00.0         |         0:00.0         |         0:00.0         |         0:00.0         |         0:00.0         |         0:00.0         |
 |       '1000.txt'       |         0:00.0         |         0:00.0         |         0:00.5         |         0:00.0         |         0:00.0         |         0:00.7         |         0:00.0         |
