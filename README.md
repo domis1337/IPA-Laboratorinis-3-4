@@ -36,6 +36,8 @@ Visos programos greitis 00:00:02:021
 
 # Versija 0.5
 
+Išmatuotas programos veikimo greitis naudojant skirtingus konteinerius studentams saugoti.
+
 **Time measured in Ms**
 |          File          |        List         |  LinkedList   |     Queue      |
 |-|-|-|-|
@@ -44,4 +46,9 @@ Visos programos greitis 00:00:02:021
 |       '1000.txt'       |         23        |         27         |         22             |
 |      '10000.txt'       |         88        |         92         |         87             |
 |      '100000.txt'      |        590        |        564         |        567             |
+
+Rezultatuose matyti, kad Queue<T> konteinerio greitis yra didžiausias.
+  
+# Versija 1.0
+
 
