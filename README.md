@@ -63,3 +63,5 @@ Programos veikimo greitis skirtingomis strategijomis, bei List<T> greitis su pak
 |      '10000.txt'       |         101       |        113         |         101           |         98        |         1027       |         51             |
 |      '100000.txt'      |         705       |        707         |         604           |         1401      |         126563     |         474            |
 
+Rezultatuose matyti, kad LinkedList<T> veikia lėčiausiai, ypač lėtai naudojant antrą strategiją ir su dideliais kiekiais duomenų.
+Antra strategija, kurioje elementai yra trinami iš sąrašo, programa veikia lėčiau.
