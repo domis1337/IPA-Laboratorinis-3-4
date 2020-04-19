@@ -36,7 +36,7 @@ Visos programos greitis 00:00:02:021
 
 # Versija 0.5
 
-**Time measured in minutes, seconds and milliseconds.**
+**Time measured in Ms**
 |          File          |        List.Add        |        List[i]         |      List.Append       |  LinkedList.AddFirst   |  LinkedList.ElementAt  |   LinkedList.AddLast   |     Queue.Enqueue      |    Queue.ElementAt     |      Queue.Append      |
 |-|-|-|-|-|-|-|-|-|-|
 |        '10.txt'        |         0:00.0         |         0:00.0         |         0:00.0         |         0:00.0         |         0:00.0         |         0:00.0         |         0:00.0         |         0:00.0         |         0:00.0         |
