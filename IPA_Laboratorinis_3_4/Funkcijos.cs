@@ -20,8 +20,8 @@ namespace IPA_Laboratorinis_3_4
             Console.WriteLine("2. Ivesti is failo");
             Console.WriteLine("3. Spausdinti duomenis");
             Console.WriteLine("4. Isvesti surusiuotus studentus i du atskirus failus");
-            Console.WriteLine("5. Sugeneruoti penkis studentu failus");
-            Console.WriteLine("6. Sugeneruoti penkis studentu failus ir juos surusiuoti i vargsiukus ir kietiakus, bei parodyti laika (Istrins dabartiniu programos issaugotus studentus)");
+            //Console.WriteLine("5. Sugeneruoti penkis studentu failus");
+            //Console.WriteLine("6. Sugeneruoti penkis studentu failus ir juos surusiuoti i vargsiukus ir kietiakus, bei parodyti laika (Istrins dabartiniu programos issaugotus studentus)");
             Console.WriteLine("99. Baigti darba");
             Console.WriteLine("\nPasirinkimas:");
             string a = Console.ReadLine();
@@ -44,13 +44,13 @@ namespace IPA_Laboratorinis_3_4
                     DuomenuRusiavimasIFailus();
                     break;
 
-                case "5":
+                /*case "5":
                     StudentuGeneravimas();
-                    break;
+                    break;*/
 
-                case "6":
+                /*case "6":
                     StudentuGeneravimasNuskaitymasRusiavimasLaikas();
-                    break;
+                    break;*/
 
                 case "99":
                     break;
@@ -214,7 +214,6 @@ namespace IPA_Laboratorinis_3_4
             var watch = System.Diagnostics.Stopwatch.StartNew();
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Vargsiukai.txt")))
             {
-                outputFile.WriteLine("Vardas".PadRight(15, ' ') + "Pavarde".PadRight(20, ' ') + "ND1".PadLeft(7, ' ') + "ND2".PadLeft(7, ' ') + "ND3".PadLeft(7, ' ') + "ND4".PadLeft(7, ' ') + "ND5".PadLeft(7, ' ') + "ND6".PadLeft(7, ' ') + "EGZ".PadLeft(7, ' '));
                 foreach (Studentas stud in studentai)
                 {
                     if (stud.galutinis_vid < 5)
@@ -225,7 +224,6 @@ namespace IPA_Laboratorinis_3_4
             }
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Kietiakai.txt")))
             {
-                outputFile.WriteLine("Vardas".PadRight(15, ' ') + "Pavarde".PadRight(20, ' ') + "ND1".PadLeft(7, ' ') + "ND2".PadLeft(7, ' ') + "ND3".PadLeft(7, ' ') + "ND4".PadLeft(7, ' ') + "ND5".PadLeft(7, ' ') + "ND6".PadLeft(7, ' ') + "EGZ".PadLeft(7, ' '));
                 foreach (Studentas stud in studentai)
                 {
                     if (stud.galutinis_vid > 5)
@@ -477,7 +475,6 @@ namespace IPA_Laboratorinis_3_4
             
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Vargsiukai10.txt")))
             {
-                outputFile.WriteLine("Vardas".PadRight(15, ' ') + "Pavarde".PadRight(20, ' ') + "ND1".PadLeft(7, ' ') + "ND2".PadLeft(7, ' ') + "ND3".PadLeft(7, ' ') + "ND4".PadLeft(7, ' ') + "ND5".PadLeft(7, ' ') + "ND6".PadLeft(7, ' ') + "EGZ".PadLeft(7, ' '));
                 foreach (Studentas studi in studentai)
                 {
 
@@ -489,7 +486,6 @@ namespace IPA_Laboratorinis_3_4
             }
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Kietiakai10.txt")))
             {
-                outputFile.WriteLine("Vardas".PadRight(15, ' ') + "Pavarde".PadRight(20, ' ') + "ND1".PadLeft(7, ' ') + "ND2".PadLeft(7, ' ') + "ND3".PadLeft(7, ' ') + "ND4".PadLeft(7, ' ') + "ND5".PadLeft(7, ' ') + "ND6".PadLeft(7, ' ') + "EGZ".PadLeft(7, ' '));
                 foreach (Studentas studi in studentai)
                 {
                     if (studi.galutinis_vid > 5)
@@ -568,7 +564,6 @@ namespace IPA_Laboratorinis_3_4
             }
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Vargsiukai100.txt")))
             {
-                outputFile.WriteLine("Vardas".PadRight(15, ' ') + "Pavarde".PadRight(20, ' ') + "ND1".PadLeft(7, ' ') + "ND2".PadLeft(7, ' ') + "ND3".PadLeft(7, ' ') + "ND4".PadLeft(7, ' ') + "ND5".PadLeft(7, ' ') + "ND6".PadLeft(7, ' ') + "EGZ".PadLeft(7, ' '));
                 foreach (Studentas studi in studentai)
                 {
                     if (studi.galutinis_vid < 5)
@@ -579,7 +574,6 @@ namespace IPA_Laboratorinis_3_4
             }
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Kietiakai100.txt")))
             {
-                outputFile.WriteLine("Vardas".PadRight(15, ' ') + "Pavarde".PadRight(20, ' ') + "ND1".PadLeft(7, ' ') + "ND2".PadLeft(7, ' ') + "ND3".PadLeft(7, ' ') + "ND4".PadLeft(7, ' ') + "ND5".PadLeft(7, ' ') + "ND6".PadLeft(7, ' ') + "EGZ".PadLeft(7, ' '));
                 foreach (Studentas studi in studentai)
                 {
                     if (studi.galutinis_vid > 5)
@@ -658,7 +652,6 @@ namespace IPA_Laboratorinis_3_4
             }
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Vargsiukai1000.txt")))
             {
-                outputFile.WriteLine("Vardas".PadRight(15, ' ') + "Pavarde".PadRight(20, ' ') + "ND1".PadLeft(7, ' ') + "ND2".PadLeft(7, ' ') + "ND3".PadLeft(7, ' ') + "ND4".PadLeft(7, ' ') + "ND5".PadLeft(7, ' ') + "ND6".PadLeft(7, ' ') + "EGZ".PadLeft(7, ' '));
                 foreach (Studentas studi in studentai)
                 {
                     if (studi.galutinis_vid < 5)
@@ -669,7 +662,6 @@ namespace IPA_Laboratorinis_3_4
             }
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Kietiakai1000.txt")))
             {
-                outputFile.WriteLine("Vardas".PadRight(15, ' ') + "Pavarde".PadRight(20, ' ') + "ND1".PadLeft(7, ' ') + "ND2".PadLeft(7, ' ') + "ND3".PadLeft(7, ' ') + "ND4".PadLeft(7, ' ') + "ND5".PadLeft(7, ' ') + "ND6".PadLeft(7, ' ') + "EGZ".PadLeft(7, ' '));
                 foreach (Studentas studi in studentai)
                 {
                     if (studi.galutinis_vid > 5)
@@ -748,7 +740,6 @@ namespace IPA_Laboratorinis_3_4
             }
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Vargsiukai10000.txt")))
             {
-                outputFile.WriteLine("Vardas".PadRight(15, ' ') + "Pavarde".PadRight(20, ' ') + "ND1".PadLeft(7, ' ') + "ND2".PadLeft(7, ' ') + "ND3".PadLeft(7, ' ') + "ND4".PadLeft(7, ' ') + "ND5".PadLeft(7, ' ') + "ND6".PadLeft(7, ' ') + "EGZ".PadLeft(7, ' '));
                 foreach (Studentas studi in studentai)
                 {
                     if (studi.galutinis_vid < 5)
@@ -759,7 +750,6 @@ namespace IPA_Laboratorinis_3_4
             }
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Kietiakai10000.txt")))
             {
-                outputFile.WriteLine("Vardas".PadRight(15, ' ') + "Pavarde".PadRight(20, ' ') + "ND1".PadLeft(7, ' ') + "ND2".PadLeft(7, ' ') + "ND3".PadLeft(7, ' ') + "ND4".PadLeft(7, ' ') + "ND5".PadLeft(7, ' ') + "ND6".PadLeft(7, ' ') + "EGZ".PadLeft(7, ' '));
                 foreach (Studentas studi in studentai)
                 {
                     if (studi.galutinis_vid > 5)
@@ -838,7 +828,6 @@ namespace IPA_Laboratorinis_3_4
             }
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Vargsiukai100000.txt")))
             {
-                outputFile.WriteLine("Vardas".PadRight(15, ' ') + "Pavarde".PadRight(20, ' ') + "ND1".PadLeft(7, ' ') + "ND2".PadLeft(7, ' ') + "ND3".PadLeft(7, ' ') + "ND4".PadLeft(7, ' ') + "ND5".PadLeft(7, ' ') + "ND6".PadLeft(7, ' ') + "EGZ".PadLeft(7, ' '));
                 foreach (Studentas studi in studentai)
                 {
                     if (studi.galutinis_vid < 5)
@@ -849,7 +838,6 @@ namespace IPA_Laboratorinis_3_4
             }
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Kietiakai100000.txt")))
             {
-                outputFile.WriteLine("Vardas".PadRight(15, ' ') + "Pavarde".PadRight(20, ' ') + "ND1".PadLeft(7, ' ') + "ND2".PadLeft(7, ' ') + "ND3".PadLeft(7, ' ') + "ND4".PadLeft(7, ' ') + "ND5".PadLeft(7, ' ') + "ND6".PadLeft(7, ' ') + "EGZ".PadLeft(7, ' '));
                 foreach (Studentas studi in studentai)
                 {
                     if (studi.galutinis_vid > 5)
