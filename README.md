@@ -36,7 +36,8 @@ Visos programos greitis 00:00:02:021
 
 # Versija 0.5
 
-Išmatuotas programos veikimo greitis naudojant skirtingus konteinerius studentams saugoti.
+1. Pridėta galimybė išmatuoti programos greitį naudojant skirtingus konteinerius.
+
 
 **Time measured in Ms**
 |          File          |        List         |  LinkedList   |     Queue      |
