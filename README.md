@@ -1,3 +1,8 @@
+# Kaip naudotis?
+1. Įjunkite programą.
+2. Skaitykite programos Meniu aprašytas funkcijas.
+3. Sekite programos veikimo metu rodomas žinutes.
+
 # Versija 0.1
 
 1. Įvesti naują studenta, įvesti jo pažymius.
@@ -65,3 +70,11 @@ Programos veikimo greitis skirtingomis strategijomis, bei List<T> greitis su pak
 
 Rezultatuose matyti, kad LinkedList<T> veikia lėčiausiai, ypač lėtai naudojant antrą strategiją ir su dideliais kiekiais duomenų.
 Antra strategija, kurioje elementai yra trinami iš sąrašo, programa veikia lėčiau.
+
+
+# Kaip įdiegti?
+1. Eikite į "**releases**" skyrių.
+2. Raskite programos 1.0 versiją.
+3. Išskleiskite "**Assets**" skyrių.
+4. Atsisiūskite **IPA_Laboratorinis_3_4.exe**.
+5. Paleiskie **IPA_Laboratorinis_3_4.exe** programą.
